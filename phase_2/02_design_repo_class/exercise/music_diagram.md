@@ -23,4 +23,4 @@ sequenceDiagram
     end
     ar->>app: Returns array of album objects
     app->>t: Prints list of albums to terminal
-    ```
+```
