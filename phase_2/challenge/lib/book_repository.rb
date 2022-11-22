@@ -1,0 +1,20 @@
+require_relative '../lib/books'
+
+class BookRepository
+  def all
+    sql = 'SELECT id, title, author_name FROM books;'
+    result_set = DatabaseConnection.exec_params(sql, [])
+
+    books = []
+
+    result_set.each do |record|
+      book = Books.new
+      book.id = record['id']
+      book.title = record['title']
+      book.author_name = record['author_name']
+
+      books << book
+    end 
+    books 
+  end 
+end 
