@@ -20,5 +20,29 @@ RSpec.describe AlbumRepository do
     expect(albums.first.release_year).to eq '2010'
     expect(albums.first.artist_id).to eq '3'
   end
+
+  it "returns the first album" do
+    repo = AlbumRepository.new
+    album = repo.find(1)
+    expect(album.id).to eq '1'
+    expect(album.title).to eq 'Red'
+    expect(album.release_year).to eq '2010'
+    expect(album.artist_id).to eq '3'
+  end
+
+  it "creates a new album" do
+    repository = AlbumRepository.new
+    album = Album.new
+    album.title = 'Trompe le Monde'
+    album.release_year = 1991
+    album.artist_id = 1
+
+    repository.create(album)
+    all_albums = repository.all
+    last_album = all_albums.last 
+    expect(last_album.title).to eq 'Trompe le Monde'
+    expect(last_album.release_year).to eq '1991'
+  end 
+
 end 
 
